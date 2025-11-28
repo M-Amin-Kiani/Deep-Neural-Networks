@@ -1,4 +1,5 @@
 # Bean Leaf Disease Classification with Deep Neural Networks
+![1](https://github.com/user-attachments/assets/87a01c64-b9bb-4f04-be59-bb3e0ac33ef6)
 
 This repository contains a full **end-to-end PyTorch pipeline** for classifying bean leaf diseases using the [AI-Lab-Makerere/beans](https://huggingface.co/datasets/AI-Lab-Makerere/beans) dataset on Google Colab.
 
@@ -113,3 +114,4 @@ class BeanMLP(nn.Module):
         o2 = self.dropout2(o2)
         logits = self.fc3(o2)
         return logits
+
