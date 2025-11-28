@@ -1,71 +1,115 @@
-# Bean Leaf Disease Classification with Deep MLP (PyTorch)
+# Bean Leaf Disease Classification with Deep Neural Networks
 
-تشخیص خودکار بیماری برگ لوبیا با استفاده از شبکه‌های عصبی ژرف (MLP) در PyTorch  
-پروژه‌ی تمرینی: طراحی، پیاده‌سازی، آزمایش و تحلیل کامل یک مدل یادگیری عمیق روی دیتاست واقعی.
+This repository contains a full **end-to-end PyTorch pipeline** for classifying bean leaf diseases using the [AI-Lab-Makerere/beans](https://huggingface.co/datasets/AI-Lab-Makerere/beans) dataset on Google Colab.
 
----
+The project covers:
 
-## ✨ خلاصه‌ی پروژه (Overview)
+- Data loading & preprocessing from Hugging Face
+- A 3-layer fully connected neural network (MLP) implemented in PyTorch
+- Multiple controlled experiments to study:
+  - Normalization
+  - Dropout
+  - Noisy labels
+  - Gaussian noise on test images
+  - Test-Time Augmentation (TTA)
+- Logging with TensorBoard
+- Robust training with checkpoints saved to Google Drive
 
-در این پروژه یک مدل یادگیری عمیق برای **تشخیص بیماری برگ لوبیا** پیاده‌سازی و تحلیل شده است.  
-ورودی سیستم: تصویر برگ لوبیا  
-خروجی سیستم: یکی از سه کلاس زیر:
-
-- `0` → **لکه‌ی زاویه‌ای برگ** (Angular Leaf Spot)  
-- `1` → **قارچ زنگار** (Bean Rust)  
-- `2` → **برگ سالم** (Healthy)
-
-کل پروژه از صفر تا صد شامل:
-
-- بارگذاری دیتاست از HuggingFace (`AI-Lab-Makerere/beans`)
-- پیش‌پردازش تصاویر (Resize + Normalize)
-- پیاده‌سازی یک **MLP سه‌لایه** در PyTorch
-- طراحی و اجرای **۵ آزمایش کنترل‌شده** روی مدل
-- لاگ‌گیری با TensorBoard
-- ذخیره‌ی بهترین مدل هر آزمایش در `pickle`
-- استفاده از **چک‌پوینت** روی Google Drive برای جلوگیری از از دست رفتن آموزش‌های طولانی
-- بررسی **پایداری در برابر نویز** با Test-Time Augmentation (TTA)
-
-هدف این ریپو این است که حتی اگر کاربر تازه‌کار باشد، با خواندن README بتواند:
-
-1. مسئله را بفهمد  
-2. کد را در Colab اجرا کند  
-3. نتایج آزمایش‌ها را تفسیر کند  
+If you just clone this repo and follow the instructions below, you can **reproduce all experiments and plots** without needing prior deep learning expertise.
 
 ---
 
-## 📊 دیتاست مورد استفاده: Beans (HuggingFace)
+## 1. Problem Overview
 
-دیتاست از مخزن زیر بارگذاری می‌شود:
+We want to automatically classify bean leaf images into **three classes**:
 
-- `AI-Lab-Makerere/beans` روی HuggingFace
+- `0` → *Angular Leaf Spot* (diseased)
+- `1` → *Bean Rust* (diseased)
+- `2` → *Healthy* (no visible disease)
 
-ویژگی‌ها:
+Given an image `x ∈ ℝ^{500×500×3}`, we resize it to `224×224×3`, then feed it into a neural network `f(x)` that outputs a probability distribution over the three classes.
 
-- تصاویر رنگی (RGB) برگ‌های لوبیا
-- سه کلاس:
-  - `0`: لکه‌ی زاویه‌ای برگ (Angular Leaf Spot)
-  - `1`: قارچ زنگار (Bean Rust)
-  - `2`: برگ سالم (Healthy)
-- دیتاست به‌صورت آماده در سه بخش تقسیم شده:
-  - `train`
-  - `validation`
-  - `test`
+The main goal is to:
 
-در کد:
+1. Build a working end-to-end classifier.
+2. Understand how **normalization, dropout, label quality, and noise** affect training and generalization.
+3. Make the training pipeline robust to interruptions using checkpoints on Google Drive.
 
-- تصاویر از سایز تقریبی `500×500×3` به `224×224×3` تبدیل می‌شوند.
-- سپس به `tensor` تبدیل شده و با آمار ImageNet نرمال‌سازی می‌شوند:
-  - mean = `[0.485, 0.456, 0.406]`
-  - std  = `[0.229, 0.224, 0.225]`
+---
 
-در ابتدای نوت‌بوک/کد:
+## 2. Dataset
 
-- نگاشت عدد → نام کلاس تعریف شده است:
+We use the **Beans dataset** hosted on Hugging Face:
+
+- Name: `AI-Lab-Makerere/beans`
+- Type: Image classification
+- Splits: `train`, `validation`, `test`
+- Each example:
+  - `image`: RGB image of a bean leaf (PIL Image)
+  - `labels`: integer in `{0, 1, 2}`
+
+### 2.1. Label Mapping
+
+The project uses the following label mapping:
+
+- `0` → `angular_leaf_spot`  (Angular Leaf Spot disease)
+- `1` → `bean_rust`          (Bean Rust disease)
+- `2` → `healthy`            (Healthy leaf)
+
+This mapping is consistent with the official Hugging Face dataset card.
+
+---
+
+## 3. Model Architecture
+
+We implement a **3-layer MLP (Multi-Layer Perceptron)** in PyTorch:
+
+1. **Input**:
+   - Image resized to `224×224×3`
+   - Flattened to a vector of length `150528 = 3×224×224`
+
+2. **Layer 1**:
+   - `Linear(150528 → 512)`
+   - `ReLU`
+   - `Dropout(p = p1)`
+
+3. **Layer 2**:
+   - `Linear(512 → 256)`
+   - `ReLU`
+   - `Dropout(p = p2)`
+
+4. **Output Layer**:
+   - `Linear(256 → 3)` (logits for 3 classes)
+   - `CrossEntropyLoss` is used, so the softmax is applied implicitly inside the loss.
+
+In code:
 
 ```python
-id2label = {
-    0: "angular_leaf_spot",  # لکه‌ی زاویه‌ای برگ
-    1: "bean_rust",          # قارچ زنگار
-    2: "healthy",            # برگ سالم
-}
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+FLATTEN_DIM = 3 * 224 * 224
+NUM_CLASSES = 3
+
+class BeanMLP(nn.Module):
+    def __init__(self, input_dim=FLATTEN_DIM,
+                 hidden1=512, hidden2=256,
+                 num_classes=NUM_CLASSES,
+                 p1=0.3, p2=0.3):
+        super().__init__()
+        self.flatten = nn.Flatten()
+        self.fc1 = nn.Linear(input_dim, hidden1)
+        self.fc2 = nn.Linear(hidden1, hidden2)
+        self.fc3 = nn.Linear(hidden2, num_classes)
+        self.dropout1 = nn.Dropout(p=p1)
+        self.dropout2 = nn.Dropout(p=p2)
+
+    def forward(self, x):
+        x = self.flatten(x)
+        o1 = F.relu(self.fc1(x))
+        o1 = self.dropout1(o1)
+        o2 = F.relu(self.fc2(o1))
+        o2 = self.dropout2(o2)
+        logits = self.fc3(o2)
+        return logits
