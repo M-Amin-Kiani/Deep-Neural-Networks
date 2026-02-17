@@ -5,6 +5,9 @@
 > **Focus:** Fixing LOCO pixel-level evaluation issues (NaN) + adding robust, memory-safe metrics + optional post-processing.
 
 ---
+<img width="491" height="600" alt="image" src="https://github.com/user-attachments/assets/21f26be8-8f21-49b1-a093-3d583ff95f45" />
+
+
 
 ## 1) Overview
 
@@ -287,6 +290,9 @@ We extend the base implementation with:
 - LOCO-safe anomaly map naming (prevents overwrite)
 - reproducible low-RAM pixel metrics
 - optional post-processing experiments
+
+<img width="492" height="455" alt="image" src="https://github.com/user-attachments/assets/a55e8aa7-63ca-49d6-869c-6bde894354b8" />
+
 
 These improvements aim to make EfficientAD experiments:
 
