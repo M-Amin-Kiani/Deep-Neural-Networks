@@ -1,0 +1,17 @@
+{
+  "dataset": "mvtec_loco",
+  "subdataset": "breakfast_box",
+  "model_size": "medium",
+  "train_steps": 1000,
+  "pretrain_penalty": true,
+  "tb_dir": "/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/tensorboard",
+  "train_output_dir": "/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box",
+  "test_output_base": "/content/outputs/efficientad_dcc_runs/anomaly_maps_base/mvtec_loco/breakfast_box/test",
+  "test_output_dcc": "/content/outputs/efficientad_dcc_runs/anomaly_maps_dcc/mvtec_loco/breakfast_box/test",
+  "final_image_auc_base": 67.98141221806642,
+  "final_image_auc_dcc": 68.25909554573275,
+  "dcc_enable": true,
+  "dcc_k": 128,
+  "dcc_pool": 2,
+  "dcc_weight": 0.2
+}

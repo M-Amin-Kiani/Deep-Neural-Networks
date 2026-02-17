@@ -1,0 +1,17 @@
+{
+  "dataset": "mvtec_ad",
+  "subdataset": "bottle",
+  "model_size": "medium",
+  "train_steps": 1000,
+  "pretrain_penalty": true,
+  "tb_dir": "/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/tensorboard",
+  "train_output_dir": "/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle",
+  "test_output_base": "/content/outputs/efficientad_dcc_runs/anomaly_maps_base/mvtec_ad/bottle/test",
+  "test_output_dcc": "/content/outputs/efficientad_dcc_runs/anomaly_maps_dcc/mvtec_ad/bottle/test",
+  "final_image_auc_base": 96.58730158730158,
+  "final_image_auc_dcc": 97.77777777777777,
+  "dcc_enable": true,
+  "dcc_k": 128,
+  "dcc_pool": 2,
+  "dcc_weight": 0.2
+}

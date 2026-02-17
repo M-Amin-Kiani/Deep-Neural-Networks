@@ -1,0 +1,7 @@
+dataset,subdataset,weight_file,path,size_mb
+mvtec_ad,bottle,autoencoder_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/autoencoder_final.pth,4.41
+mvtec_ad,bottle,student_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/student_final.pth,46.47
+mvtec_ad,bottle,teacher_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/teacher_final.pth,32.12
+mvtec_loco,breakfast_box,autoencoder_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/autoencoder_final.pth,4.41
+mvtec_loco,breakfast_box,student_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/student_final.pth,46.47
+mvtec_loco,breakfast_box,teacher_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/teacher_final.pth,32.12

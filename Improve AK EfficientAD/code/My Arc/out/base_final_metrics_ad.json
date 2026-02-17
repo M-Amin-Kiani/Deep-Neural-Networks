@@ -1,0 +1,11 @@
+{
+  "dataset": "mvtec_ad",
+  "subdataset": "bottle",
+  "model_size": "medium",
+  "train_steps": 1000,
+  "final_image_auc": 96.66666666666667,
+  "tb_dir": "/content/outputs/efficientad_runs/trainings/mvtec_ad/bottle/tensorboard",
+  "train_output_dir": "/content/outputs/efficientad_runs/trainings/mvtec_ad/bottle",
+  "test_output_dir": "/content/outputs/efficientad_runs/anomaly_maps/mvtec_ad/bottle/test",
+  "pretrain_penalty": true
+}

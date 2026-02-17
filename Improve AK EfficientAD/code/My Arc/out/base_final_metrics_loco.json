@@ -1,0 +1,11 @@
+{
+  "dataset": "mvtec_loco",
+  "subdataset": "breakfast_box",
+  "model_size": "medium",
+  "train_steps": 1000,
+  "final_image_auc": 67.92474215119574,
+  "tb_dir": "/content/outputs/efficientad_runs/trainings/mvtec_loco/breakfast_box/tensorboard",
+  "train_output_dir": "/content/outputs/efficientad_runs/trainings/mvtec_loco/breakfast_box",
+  "test_output_dir": "/content/outputs/efficientad_runs/anomaly_maps/mvtec_loco/breakfast_box/test",
+  "pretrain_penalty": true
+}

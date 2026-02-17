@@ -1,0 +1,5 @@
+run,dataset,subdataset,pixel_auroc_sampled,au_pro_0.3_sampled,n_images_seen,n_pos_pixels,n_neg_pixels,n_images_pro
+baseline,mvtec_ad,bottle,0.9494006284200001,0.17747962474822998,54,1000000,1000000,83
+baseline,mvtec_loco,breakfast_box,,0.0,275,0,1000000,120
+dcc,mvtec_ad,bottle,0.9650806066919999,0.0898635983467102,54,1000000,1000000,83
+dcc,mvtec_loco,breakfast_box,,0.0,275,0,1000000,120

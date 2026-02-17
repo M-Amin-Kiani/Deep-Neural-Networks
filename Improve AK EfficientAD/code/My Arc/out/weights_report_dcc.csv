@@ -1,0 +1,13 @@
+dataset,subdataset,file,path,size_mb
+mvtec_ad,bottle,autoencoder_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/autoencoder_final.pth,4.202
+mvtec_ad,bottle,dcc_centers.npy,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/dcc_centers.npy,0.188
+mvtec_ad,bottle,dcc_neg_logp.npy,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/dcc_neg_logp.npy,0.063
+mvtec_ad,bottle,final_metrics_dcc.json,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/final_metrics_dcc.json,0.001
+mvtec_ad,bottle,student_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/student_final.pth,44.318
+mvtec_ad,bottle,teacher_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_ad/bottle/teacher_final.pth,30.628
+mvtec_loco,breakfast_box,autoencoder_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/autoencoder_final.pth,4.202
+mvtec_loco,breakfast_box,dcc_centers.npy,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/dcc_centers.npy,0.188
+mvtec_loco,breakfast_box,dcc_neg_logp.npy,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/dcc_neg_logp.npy,0.063
+mvtec_loco,breakfast_box,final_metrics_dcc.json,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/final_metrics_dcc.json,0.001
+mvtec_loco,breakfast_box,student_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/student_final.pth,44.318
+mvtec_loco,breakfast_box,teacher_final.pth,/content/outputs/efficientad_dcc_runs/trainings/mvtec_loco/breakfast_box/teacher_final.pth,30.628
