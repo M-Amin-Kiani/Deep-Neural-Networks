@@ -1,0 +1,3 @@
+dataset,subdataset,pixel_auroc_hist,au_pro_0.3_masked,n_images_used,n_pos_pixels,n_neg_pixels,note
+mvtec_ad,bottle,0.9817815211667088,0.3468647003173828,83,3886731,63343269,Pixel metrics computed only on images with GT masks (good + masked anomalies).
+mvtec_loco,breakfast_box,,0.0,102,0,208896000,Pixel metrics computed only on images with GT masks (good + masked anomalies).

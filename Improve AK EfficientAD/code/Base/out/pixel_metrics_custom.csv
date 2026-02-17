@@ -1,0 +1,3 @@
+dataset,subdataset,pixel_auroc,au_pro_0.3,n_images
+mvtec_ad,bottle,0.981796674601102,0.35080885887145996,83
+mvtec_loco,breakfast_box,,0.0,275
