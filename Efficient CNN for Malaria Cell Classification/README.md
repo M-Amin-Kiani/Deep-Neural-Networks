@@ -1,4 +1,5 @@
 # Efficient CNN for Malaria Cell Classification (Parasitized vs. Uninfected)
+<img width="975" height="771" alt="image" src="https://github.com/user-attachments/assets/4873fc38-9760-4d29-b8cd-da8641aac8e2" />
 
 A lightweight and computation-aware convolutional neural network (CNN) project for classifying red blood cell images into **Parasitized** (infected with _Plasmodium falciparum_) vs. **Uninfected** (healthy).  
 The focus is **efficient inference on weak/low-power hardware** by reducing learnable parameters and **FLOPs** while preserving accuracy.
